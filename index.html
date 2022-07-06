@@ -4,15 +4,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<!-- do not place anything before meta tags above -->
+	
     <title>Jouko N.</title>
 
     <!-- Bootstrap -->
-	<!--
 	<link href="bootstrap-5.1.1-dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="bootstrap_override.css" rel="stylesheet">
-	-->
-	
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -22,8 +21,48 @@
   </head>
   <body>
     
-	<h1>Sivut</h1>
+	<div class="container-fluid container-header">
+		
+		<div class="container container-title h-75">
+			<h1 class="bbt">Jouko Niinimäki</h1>
+		</div>
+		<div class="container container-navi h-25">
+			<div class="row">
+				<div class="col-lg-4">
+					<a class="btn btn-lg btn-primary btn-header" href="#">General Info</a>
+				</div>
+				<div class="col-lg-4">
+					<a class="btn btn-lg btn-primary btn-header" href="#">Code Examples & Papers</a>
+				</div>
+				<div class="col-lg-4">
+					<a class="btn btn-lg btn-primary btn-header" href="#">Photos</a>
+				</div>
+			</div>
+		</div>
+
+	</div>
 	
+	<div class="container container-content">
 	
+		<br />
+		<h3 class="featurette-heading">Who is this guy?</h2>
+		<br />
+		
+		<div class="li-info">
+        <li class="lead">A gameplay programmer at <a href= "https://www.frozenbyte.com">Frozenbyte</a></li>
+		<li class="lead">An amateur photographer</li>
+        <li class="lead">Bachelor in computer sciences (with most of master's courses done too) from <a href= "https://www.helsinki.fi/">University of Helsinki</a></li>
+        <li class="lead">Also an IT Tradenome</li>
+		</div>
+        <br />
+		
+        <p class="lead">Contact: jouko.t.niinimaki [at] gmail.com</p>
+	
+	</div>
+    
+
+	
+	<script src="bootstrap-5.1.1-dist/js/bootstrap.bundle.js"></script> 
+
   </body>
 </html>
