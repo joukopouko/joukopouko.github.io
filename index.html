@@ -20,49 +20,149 @@
     <![endif]-->
   </head>
   <body>
+  
+  <main>
     
-	<div class="container-fluid container-header">
-		
-		<div class="container container-title h-75">
-			<h1 class="bbt">Jouko Niinimäki</h1>
-		</div>
-		<div class="container container-navi h-25">
-			<div class="row">
-				<div class="col-lg-4">
-					<a class="btn btn-lg btn-primary btn-header" href="#">General Info</a>
-				</div>
-				<div class="col-lg-4">
-					<a class="btn btn-lg btn-primary btn-header" href="#">Code Examples & Papers</a>
-				</div>
-				<div class="col-lg-4">
-					<a class="btn btn-lg btn-primary btn-header" href="#">Photos</a>
-				</div>
-			</div>
-		</div>
-
+	<section class="py-5 container">
+    <div class="row pt-5">
+	  <div class="col"></div>
+      <div class="col-lg-6 text-center">
+        <h1 class="fw-light">Jouko Niinimäki</h1>
+      </div>
+	  <div class="col"></div>
 	</div>
 	
-	<div class="container container-content">
-	
-		<br />
-		<h3 class="featurette-heading">Who is this guy?</h2>
-		<br />
-		
-		<div class="li-info">
-        <li class="lead">A gameplay programmer at <a href= "https://www.frozenbyte.com">Frozenbyte</a></li>
-		<li class="lead">An amateur photographer</li>
-        <li class="lead">Bachelor in computer sciences (with most of master's courses done too) from <a href= "https://www.helsinki.fi/">University of Helsinki</a></li>
-        <li class="lead">Also an IT Tradenome</li>
-		</div>
-        <br />
-		
-        <p class="lead">Contact: jouko.t.niinimaki [at] gmail.com</p>
-	
+	<div class="row" >
+	  <div class="col-lg-2"></div>
+	  <div class="col-lg-auto">
+		<ul class="list-unstyled">
+		<li class="lead text-muted">A gameplay programmer at <a href= "https://www.frozenbyte.com">Frozenbyte</a></li>
+		<li class="lead text-muted">An amateur photographer</li>
+		<li class="lead text-muted">Bachelor in computer sciences from <a href= "https://www.helsinki.fi/">University of Helsinki</a> (with most of master's courses done too)</li>
+		<li class="lead text-muted">Also an IT Tradenome</li>
+		</ul>
+	  </div>
+	  <div class="col-lg-2"></div>
 	</div>
-    
-
+	<!--
+	<div class="row pb-5">
+	  <div class="col"></div>
+      <div class="col-lg-6 text-center">
+	    <p>
+          <a href="#" class="btn btn-primary my-2">Main call to action</a>
+          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+        </p>
+	  </div>
+	  <div class="col"></div>
+	</div>
+	-->
 	
-	<script src="bootstrap-5.1.1-dist/js/bootstrap.bundle.js"></script> 
+	<div class="row py-5">
+      <div class="col-md-6">
+	  
+        <div class="h-100 p-5 text-white rounded-3 examples-bg">
+          <h2>Code samples & papers</h2>
+          <p>A few rather old code samples and papers from university studies.</p>
+          <button class="btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExamples" aria-expanded="false" aria-controls="collapseExamples">Show</button>
+        </div>
+		
+      </div>
+      <div class="col-md-6">
+	  
+        <div class="h-100 p-5 text-white rounded-3 photos-bg">
+          <h2>Photos</h2>
+          <p>Sample photos can be found from my Flickr profile.</p>
+          <a class="btn btn-light" target="_blank" href="https://www.flickr.com/photos/82759569@N08/">View on Flickr
+			<!--<img src="kuvat/box-arrow-up-right.svg" />-->
+		  </a>
+        </div>
+		
+      </div>
+    </div>
+	
+  </section>
+  <div class="collapse" id="collapseExamples">
+  <div class="album py-5 bg-light">
+    <div class="container">
+	  <div class="row py-3">
+	  
+		<div class="col-lg-4 d-flex align-items-stretch">
+		  <div class="card shadow-sm">
+		    <img src="kuvat/fig_all_history_700500.png" alt="Example image">
+			<div class="card-body d-flex flex-column align-items-start">
+			  <h5 class="card-title">Korkeapaine (2017)</h5>
+              <p class="card-text">A software made for predicting future Korkeasaari zoo visitor counts with date and weather information using machine learning techniques. The weather information is provided by <a href= "http://fmi.fi/">Finnish metheorological institute</a> API and Korkeasaari vistor counts by <a href= "http://www.hri.fi/fi/dataset/korkeasaaren-kavijamaarat">Helsinki region infoshare</a>.</p>
+              <a class="btn btn-outline-primary mt-auto" target="_blank" href="https://github.com/joniin/korkeapaine-public">GitHub link</a>
+            </div>
+		  </div>
+		</div>
+		
+		<div class="col-lg-4 d-flex align-items-stretch">
+		  <div class="card shadow-sm">
+		    <img src="kuvat/nautakuolema_700500.png" alt="Example image">
+			<div class="card-body d-flex flex-column align-items-start">
+			  <h5 class="card-title">Taudinpurkauspeli (2015)</h5>
+              <p class="card-text">An educational software/game for vetenarian students. Started as a course project but continued to live it's own life later. Nowadays developed/managed only one person from the original group.</p>
+              <a class="btn btn-outline-primary mt-auto" target="_blank" href="https://github.com/taudinpurkauspeli/taudinpurkauspeli">GitHub link</a>
+            </div>
+		  </div>
+		</div>
+		
+		<div class="col-lg-4 d-flex align-items-stretch">
+		  <div class="card shadow-sm">
+		    <img src="kuvat/huffman_700500.jpg" alt="Example image">
+			<div class="card-body d-flex flex-column align-items-start">
+			  <h5 class="card-title">Huffman compressor (2014)</h5>
+              <p class="card-text">A simple compressor software made with Java. Uses Huffman encoding.</p>
+              <a class="btn btn-outline-primary mt-auto" target="_blank" href="https://github.com/joniin/TiraLabra">GitHub link</a>
+            </div>
+		  </div>
+		</div>
+		
+	  </div>
+	  <div class="row">
+	  
+	    <div class="col-lg-4 d-flex align-items-stretch">
+		  <div class="card shadow-sm">
+		    <img src="kuvat/jqtris_700500.png" alt="Example image">
+			<div class="card-body d-flex flex-column align-items-start">
+			  <h5 class="card-title">jQtris (2011)</h5>
+              <p class="card-text">A tetris clone coded with JavaScript. Made for fun and to test how difficult if would be to code a simple game using only HTML and JavaScript (jQuey).</p>
+              <a class="btn btn-outline-primary mt-auto" target="_blank" href="jqtris/jqtris.html">Try it here</a>
+            </div>
+		  </div>
+		</div>
+	  
+	    <div class="col-lg-4 d-flex align-items-stretch">
+		  <div class="card shadow-sm">
+		    <img src="kuvat/pdf-icon_700500.jpg" alt="Example image">
+			<div class="card-body d-flex flex-column align-items-start">
+			  <h5 class="card-title">Bachelor's thesis</h5>
+              <p class="card-text">A review on spaced seeds technique used in biological sequence alignment (Finnish only.)</p>
+              <a class="btn btn-outline-primary mt-auto" target="_blank" href="kandidaatin_tutkielma_jouko_niinimaki.pdf">pdf</a>
+            </div>
+		  </div>
+		</div>
+		
+		<div class="col-lg-4 d-flex align-items-stretch">
+		  <div class="card shadow-sm">
+		    <img src="kuvat/pdf-icon_700500.jpg" alt="Example image">
+			<div class="card-body d-flex flex-column align-items-start">
+			  <h5 class="card-title">Seminar paper on bioinformatics</h5>
+              <p class="card-text">A review on read mapping on de Bruijn graphs and about a software called BGREAT using this technique.</p>
+              <a class="btn btn-outline-primary mt-auto" target="_blank" href="seminar_text_jouko_niinimaki.pdf">pdf</a>
+            </div>
+		  </div>
+		</div>
+	  
+	  </div>
+	</div>
+  </div>
+  </div>
+  
+  </main>
+	
+    <script src="bootstrap-5.1.1-dist/js/bootstrap.bundle.js"></script> 
 
   </body>
 </html>

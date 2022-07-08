@@ -1,81 +1,8 @@
-:root{
-    --jumbocolor: #b139b3;
-    --jumbocolor2: #ff4dd2;
-    --jumbolight: #f5bcf5;
-    --jumbomedium: #eb7aeb;
-    --jumbogrey: #c9c9c9;
-	
-	--border_blue: #3771b0;
+
+.examples-bg {
+	background-image: url("kuvat/koodi_tausta_1.jpg");
 }
 
-/*
-* {
-    font-size: 16px;
-}
-*/
-
-.debug {
-    border: 1px solid red;
-}
-
-.btn-header{
-	background-color: var(--border_blue);
-	border-radius: 3px;
-}
-
-.container-header{
-    background-color: white;/*#662255;*/
-	height: 200px;
-	color: black;
-	text-align: center;
-	vertical-align: center;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	/*border-bottom-width: 5px;
-	border-bottom-style: solid;
-	border-bottom-color: var(--border_blue);*/
-	
-}
-
-.container-title{
-	text-align: center;
-	vertical-align: middle;
-	float: top;
-}
-
-.container-navi{
-	float: bottom;
-	
-}
-
-.container-content{
-	padding-top: 5px;
-}
-
-.container-medium{
-    background-color: var(--jumbomedium);
-}
-
-.container-grey{
-    background-color: var(--jumbogrey);
-}
-
-.featurette-margin{
-	margin-top: 20px;
-	
-}
-
-.featurette-image img{
-	max-height: 300px;
-	max-width: 300px;
-	float: right;
-}
-
-.li-info {
-	padding-left: 20px;
-}
-
-.lead a {
-	
-	
+.photos-bg {
+	background-image: url("kuvat/lupiini_tausta.png");
 }

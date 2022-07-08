@@ -1,0 +1,1081 @@
+<html>
+<head>
+ <title>jQtris</title>
+<style>
+#screen {
+	background: rgb(66, 66, 66);
+	background: rgba(00, 00, 00, 0.6);
+	width: 200px;
+	height: 400px;
+	margin-left: 10px;
+	margin-top: 10px;
+	float: left;
+	position:relative;
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
+}
+#gamebg{
+	background-image: url('taustaa2.png');
+	width: 333px;
+	height: 492px;
+	margin-left: 400px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
+}
+#name{
+	background-image: url('nimi.png');
+	width: 333px;
+	height: 70px;
+	margin-top: 0px;
+}
+#newgbtn{
+	color: #FFFFFF;
+	font-size: 18px;
+	text-decoration: none;
+	text-shadow: 0 0 1px #FFFFFF, 0 0 1px #FFFFFF;
+	font-family: Arial;
+	font-weight: normal;
+	text-align: center;
+	//vertical-align: middle;
+	line-height: 30px;
+	background-image: url('nappi.png');
+	width: 100px;
+	height: 30px;
+	margin-right: 10px;
+	margin-top: 10px;
+	float: right;
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
+	cursor: pointer;
+}
+#pausebtn{
+	color: #FFFFFF;
+	font-size: 18px;
+	text-decoration: none;
+	text-shadow: 0 0 1px #FFFFFF, 0 0 1px #FFFFFF;
+	font-family: Arial;
+	font-weight: normal;
+	text-align: center;
+	//vertical-align: middle;
+	line-height: 30px;
+	background-image: url('nappi.png');
+	width: 100px;
+	height: 30px;
+	margin-right: 10px;
+	margin-top: 10px;
+	float: right;
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
+	cursor: pointer;
+}
+#points{
+	color: #FFFFFF;
+	font-size: 18px;
+	text-decoration: none;
+	text-shadow: 0 0 2px #FFFFFF, 0 0 2px #FFFFFF;
+	font-family: Arial;
+	font-weight: bold;
+	text-align: right;
+	width: 100px;
+	margin-right: 10px;
+	margin-top: 10px;
+	float: right;
+}
+#level{
+	color: #DDEEFF;
+	font-size: 18px;
+	text-decoration: none;
+	text-shadow: 0 0 2px #AABBCC, 0 0 2px #AABBCC;
+	font-family: Arial;
+	font-weight: bold;
+	text-align: right;
+	width: 100px;
+	margin-right: 10px;
+	margin-top: 10px;
+	float: right;
+}
+#gameobg{
+	position: absolute;
+	background: rgb(22, 22, 22);
+	background: rgba(0, 0, 0, 0.6);
+	width: 200px;
+	height: 400px;
+	z-index: 2;
+	//opacity: 0.5;
+	//filter: alpha(opacity=50);
+}
+#gameotext{
+	color: #000000;
+	font-size: 22px;
+	text-decoration: none;
+	text-shadow: 0 0 2px #FFFFFF, 0 0 2px #FFFFFF;
+	font-family: Arial;
+	font-weight: bold;
+	text-align: center;
+	width: 130px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 190;
+}
+#help{
+	width: 293px;
+	margin-left: 400px;
+	margin-top: 20px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
+	padding: 20px;
+}
+.box{
+	background-color: red;
+	width: 18px;
+	height: 18px;
+	position: absolute;
+	z-index: 1;
+	border-style: solid;
+	border-width: 1px;
+	border-top-color: #FF3333;
+	border-left-color: #FF3333;
+	border-right-color: #990000;
+	border-bottom-color: #990000;
+}
+.redbox{
+	background-color: red;
+	border-top-color: #FF3333;
+	border-left-color: #FF3333;
+	border-right-color: #990000;
+	border-bottom-color: #990000;
+}
+.greenbox{
+	background-color: #009900;
+	border-top-color: #33BB33;
+	border-left-color: #33BB33;
+	border-right-color: #007700;
+	border-bottom-color: #007700;
+}
+.bluebox{
+	background-color: blue;
+	border-top-color: #3333FF;
+	border-left-color: #3333FF;
+	border-right-color: #000099;
+	border-bottom-color: #000099;
+}
+.yellowbox{
+	background-color: #F2E41D;
+	border-top-color: #FFF563;
+	border-left-color: #FFF563;
+	border-right-color: #C9BC00;
+	border-bottom-color: #C9BC00;
+}
+.purplebox{
+	background-color: #AA22FF;
+	border-top-color: #DD44FF;
+	border-left-color: #DD44FF;
+	border-right-color: #8800DD;
+	border-bottom-color: #8800DD;
+}
+.lightbluebox{
+	background-color: #00E0DD;
+	border-top-color: #22F2EF;
+	border-left-color: #22F2EF;
+	border-right-color: #00ADAB;
+	border-bottom-color: #00ADAB;
+}
+.orangebox{
+	background-color: #F7AD00;
+	border-top-color: #FFCE5C;
+	border-left-color: #FFCE5C;
+	border-right-color: #CC8F00;
+	border-bottom-color: #CC8F00;
+}
+
+.aputeksti {
+}
+
+ </style>
+ 
+ <script type="text/javascript" src="jquery.js"></script>
+ <script type="text/javascript">
+ 
+var running = false;
+var t;
+var et;
+var idCounter = 0;	//palikoiden id-laskija
+var palikka;
+var xycoord = new Array(10);
+var xysquare = new Array(10);
+var points;
+var level;
+var gameSpeed;
+var paused;
+
+function startGame(){
+	paused = false;
+	gameSpeed = 800;
+	points = 0;
+	level = 1;
+	initXYCoord();
+	initXYSquare();
+	setPoints();
+	$("#level").text("Level " + level);
+	running = true;
+	newBlock();
+	gameLoop();
+}
+function gameLoop(){
+	if(running){
+		palikka.moveDown();
+		
+		if(palikka.landed){
+			newBlock();
+		}
+		
+		t = self.setTimeout("gameLoop()", Math.round(gameSpeed));
+	}
+}
+function newBlock(){
+	palikka = new block();
+}
+function levelUp(){
+	level++;
+	gameSpeed = Math.round(gameSpeed *  0.9);
+	$("#level").text("Level " + level);
+}
+function newGame(){
+	running = false;
+	points = 0;
+	$("#gameotext").text("New Game");
+	$("#gameobg").fadeIn(1000, function(){
+		deleteElements();
+		$("#gameobg").fadeOut(1000, function(){
+			waitEffect(100);
+			startGame();
+		});
+	});
+	
+}
+function pauseGame(){
+	running = false;
+	paused = true;
+	$("#gameotext").text("Pause");
+	$("#gameobg").fadeIn(1000);
+	
+}
+function resumeGame(){
+	$("#gameobg").fadeOut(1000, function(){
+		waitEffect(100);
+		running = true;
+		paused = false;
+		gameLoop();
+	});
+}
+function endGame(){
+	running = false;
+	$("#gameotext").text("Game Over");
+	$("#gameobg").fadeIn(1000);
+}
+function setPoints(){
+	if(points >= 1000 * level * 1.5){
+		levelUp();
+	}
+	$("#points").text(points);
+}
+function waitEffect(time){
+	var before = new Date().getTime();
+	while(new Date().getTime() < before + time);
+}
+function initXYCoord(){
+	//ruututaulukko (tiedot palikoiden sijainneista)
+	for (i = 0; i < 10; i++){
+		xycoord[i] = new Array(20);
+	}
+	for (x = 0; x < 10; x++){
+		for(y = 0; y < 20; y++){
+			xycoord[x][y] = 0;
+		}
+	}
+}
+function initXYSquare(){
+	//ruututaulukko (tiedot palikoiden sijainneista)
+	for (i = 0; i < 10; i++){
+		xysquare[i] = new Array(20);
+	}
+}
+function deleteElements(){
+	$(".box").remove();
+}
+function clearRows(){
+	var removed = 0;
+	var clrow = new Array(20)
+	
+	//alustaa rivimerkinnät
+	for(i = 0; i < 20; i++){
+		clrow[i] = 0;
+	}
+	
+	//tarkistaa ja merkitsee tyhjättävät rivit
+	for(y = 0; y < 20; y++){
+		var clear = true;
+		for(x = 0; x < 10; x++){
+			if(xycoord[x][y] == 0){
+				clear = false;
+			}
+		}
+		if(clear == true){
+			clrow[y] = 1;
+		}
+	}
+	
+	//tyhjentää rivit
+	for(y = 0; y < 20; y++){
+		if(clrow[y] == 1){
+			for(x = 0; x < 10; x++){
+				//$(xysquare[x][y].id).fadeOut("slow");
+				xysquare[x][y].removeElement();
+				xysquare[x][y] = undefined;
+				xycoord[x][y] = 0;
+			}
+			removed++;
+		}
+	}
+	if(removed > 0){
+		//siirtää rivit alaspäin
+		for(y = 18; y > -1; y--){
+			var movecount = 0;
+			for(i = 19; i > y; i--){
+				if(clrow[i] == 1){
+					movecount++;
+				}
+			}
+			if(movecount > 0){	//siirretään kaikkia ylläolevia rivejä alaspäin, jos on siirrettävää
+				for(x = 0; x < 10; x++){
+					//alert(x + ", " + y);
+					if(xysquare[x][y] != undefined){
+						for(z = 0; z < movecount; z++){
+							xysquare[x][y].moveDown();
+						}
+						xysquare[x][y + movecount] = xysquare[x][y]
+						xysquare[x][y] = undefined;
+					}
+					if(xycoord[x][y] == 1){
+						xycoord[x][y] = 0;
+						xycoord[x][y + movecount] = 1;
+					}
+					
+					
+					//xysquare[x][y].removeElement();
+					
+					
+				}
+			}
+		}
+		points += removed * removed * 100;
+		setPoints();
+
+	}
+	var kuvaaa = ""
+	for(y = 0; y < 20; y++){
+		for(x = 0; x < 10; x++){
+			kuvaaa += xycoord[x][y] + " ";
+			if(x == 9){
+				kuvaaa += "\n"
+			}
+		}
+	}
+	//alert(kuvaaa);
+}
+function isEmpty(x, y){
+	if(xycoord[x][y] == 0){
+		return true;
+	}
+	return false;
+}
+function square(x, y, typec){
+	/*neliö-objekti*/
+	 
+	this.id = "a" + idCounter;
+	
+	idCounter++;
+	
+	//paikka ruudukossa
+	this.x = x;
+	this.y = y;
+	
+	//todellinen paikka
+	this.left = 20*this.x;
+	this.top = 20*this.y;
+	
+	if(typec == 0){
+		$("#screen").append("<div class = 'box orangebox' id = '" + this.id + "'></div>");
+	}else if(typec == 1){
+		$("#screen").append("<div class = 'box lightbluebox' id = '" + this.id + "'></div>");
+	}else if(typec == 2){
+		$("#screen").append("<div class = 'box greenbox' id = '" + this.id + "'></div>");
+	}else if(typec == 3){
+		$("#screen").append("<div class = 'box purplebox' id = '" + this.id + "'></div>");
+	}else if(typec == 4){
+		$("#screen").append("<div class = 'box bluebox' id = '" + this.id + "'></div>");
+	}else if(typec == 5){
+		$("#screen").append("<div class = 'box yellowbox' id = '" + this.id + "'></div>");
+	}else{
+		$("#screen").append("<div class = 'box redbox' id = '" + this.id + "'></div>");
+	}
+	
+	
+	
+	$("#" + this.id).css("left", this.left);
+	$("#" + this.id).css("top", this.top);
+	
+	this.moveTo = function(xc, yc){
+		this.x = xc;
+		this.y = yc;
+		
+		this.left = 20*this.x;
+		this.top = 20*this.y;
+		
+		$("#" + this.id).css("left", this.left);
+		$("#" + this.id).css("top", this.top);
+	}
+	this.removeElement = function(){
+		$("#" + this.id).remove();
+	}
+	this.moveDown = function(){
+		this.y++;
+		$("#" + this.id).animate({top: "+=" + 20}, 50);
+	}
+	this.drop = function(rows){
+		this.y += rows
+		$("#" + this.id).animate({top: "+=" + (rows * 20)}, 50);
+	}
+	this.canDrop = function(){
+		if(this.y + 1 < 20){
+			for(yy = 0; yy < 20; yy++){
+				if(xycoord[this.x][this.y + yy] == 1 || this.y + yy > 19){
+					return yy - 1;
+				}
+			}
+			return 0;
+		}
+		return 0;
+	}
+	this.canMoveDown = function(){
+		if(this.y + 1 < 20){
+			if(xycoord[this.x][this.y + 1] == 0){
+				return true;
+			}
+		}
+		return false;
+	}
+	this.canMoveLeft = function(){
+		if(this.x - 1 >= 0){
+			if(xycoord[this.x - 1][this.y] == 0){
+				return true;
+			}
+		}
+		return false;
+	}
+	this.canMoveRight = function(){
+		if(this.x + 1 < 10){
+			if(xycoord[this.x + 1][this.y] == 0){
+				return true;
+			}
+		}
+		return false;
+	}
+	this.moveUp = function(){
+		this.y--;
+		$("#" + this.id).animate({top: "-=" + 20}, 5);
+	}
+	this.moveLeft = function(){
+		this.x--;
+		$("#" + this.id).animate({left: "-=" + 20}, 5);
+	}
+	this.moveRight = function(){
+		this.x++;
+		$("#" + this.id).animate({left: "+=" + 20}, 5);
+	}
+
+	
+	return 0;
+}
+
+function block(){
+	/*palikka-objekti*/
+	var type = Math.floor(Math.random()*7);
+	var direction = 1;
+	var smatrix;	//matriisit 3x3-palikoille
+	var rmatrix;
+	var squareArray;			//taulukko, jossa on squaret
+	var bx = 3;					//matriisin sijainti pelialueella
+	var by = 0;
+	
+	
+	form(type);
+	
+	testEnd();
+	
+	this.landed = false;
+	function testEnd(){
+		var end = false;
+		for(i = 0; i < 4; i++){
+			if(xycoord[squareArray[i].x][squareArray[i].y] == 1)
+				end = true;
+		}
+		if(end){
+			endGame();
+		}
+	}
+	function initMatrix(){
+		smatrix = new Array(3);
+		
+		for (i = 0; i < 3; i++){
+			smatrix[i] = new Array(3);
+		}
+		for (x = 0; x < 3; x++){
+			for(y = 0; y < 3; y++){
+				smatrix[x][y] = 0;
+			}
+		}
+	}
+	function initRMatrix(){
+		//luodaan pyöritettävä kopio vanhasta matriisista
+		rmatrix = new Array(3);
+		for (i = 0; i < 3; i++){
+			rmatrix[i] = new Array(3);
+		}
+		for (x = 0; x < 3; x++){
+			for(y = 0; y < 3; y++){
+				rmatrix[x][y] = 0;
+			}
+		}
+	}
+	function rotateMatrix(){
+		//luodaan pyöräytetty matriisi
+		for (x = 0; x < 3; x++){
+			for(y = 0; y < 3; y++){
+				rmatrix[x][y] = smatrix[2 - y][x];
+			}
+		}
+	}
+	function refreshMatrix(){
+		//päivitetään matriisi pyöräytetyksi
+		for (x = 0; x < 3; x++){
+			for(y = 0; y < 3; y++){
+				smatrix[x][y] = rmatrix[x][y];
+			}
+		}
+	}
+	function form(typen){
+		if(typen == 0){
+			initMatrix();
+			squareArray = [new square(4, 0, 0), new square(3, 1, 0), new square(4, 1, 0), new square(5, 1, 0)];
+			smatrix[1][0] = 1;
+			smatrix[0][1] = 1;
+			smatrix[1][1] = 1;
+			smatrix[2][1] = 1;
+			initRMatrix();
+			
+		}else if(typen == 1){
+			squareArray = [new square(4, 0, 1), new square(5, 0, 1), new square(4, 1, 1), new square(5, 1, 1)];
+		}else if(typen == 2){
+			initMatrix();
+			squareArray = [new square(4, 1, 2), new square(5, 1, 2), new square(3, 2, 2), new square(4, 2, 2)];
+			
+			initRMatrix();
+		}else if(typen == 3){
+			initMatrix();
+			squareArray = [new square(3, 1, 3), new square(4, 1, 3), new square(4, 2, 3), new square(5, 2, 3)];
+			
+			initRMatrix();
+		}else if(typen == 4){
+			initMatrix();
+			squareArray = [new square(3, 0, 4), new square(4, 0, 4), new square(4, 1, 4), new square(4, 2, 4)];
+			smatrix[0][0] = 1;
+			smatrix[1][0] = 1;
+			smatrix[1][1] = 1;
+			smatrix[1][2] = 1;
+			initRMatrix();
+		}else if(typen == 5){
+			initMatrix();
+			squareArray = [new square(4, 0, 5), new square(5, 0, 5), new square(4, 1, 5), new square(4, 2, 5)];
+			smatrix[1][0] = 1;
+			smatrix[2][0] = 1;
+			smatrix[1][1] = 1;
+			smatrix[1][2] = 1;
+			initRMatrix();
+		}else if(typen == 6){
+			squareArray = [new square(5, 0, 6), new square(5, 1, 6), new square(5, 2, 6), new square(5, 3, 6)];
+		}
+	}
+	this.rotate = function(){
+		
+		var allow = true;
+		
+		function rotationAllowed(){
+			if(this.landed == true){
+				allow = false;
+			}
+
+			rotateMatrix();
+			//tarkistetaan, voiko palikkaa pyörittää
+			for (x = 0; x < 3; x++){
+				for(y = 0; y < 3; y++){
+					if(rmatrix[x][y] == 1 && isEmpty(bx + x, by + y) == false){
+						allow = false;
+					}
+				}
+			}
+			return allow;
+		}
+		
+		//pyöritykset eri palikkatyypeille
+		if(type == 0 || type == 4 || type == 5){
+			if(rotationAllowed()){
+				squareArray[0].removeElement();
+				squareArray[1].removeElement();
+				squareArray[2].removeElement();
+				squareArray[3].removeElement();
+				
+				squareArray.length = 0;
+
+				for (x = 0; x < 3; x++){
+					for(y = 0; y < 3; y++){
+						if(rmatrix[x][y] == 1){
+							
+							squareArray.push(new square(bx + x, by + y, type));
+						}
+					}
+				}
+				
+				refreshMatrix();
+			}
+		}else if(type == 1){
+		
+		}else if(type == 2){
+			if(direction == 1){	//kun kappale on vaakatasossa
+				
+				var xx = squareArray[0].x;
+				var yy = squareArray[0].y;
+				//tutkitaan voiko kappaletta pyörittää
+				
+				if(xycoord[xx][yy - 1] == 'undefined' || xycoord[xx][yy - 1] == 1 ){
+					allow = false;
+				}
+				if(xycoord[xx + 1][yy + 1] == 'undefined' || xycoord[xx + 1][yy + 1] == 1 ){
+					allow = false;
+				}
+				
+				if(allow){
+				//poistetaan aikaisemmat neliöt ja luodaan uudet uuteen asentoon
+					squareArray[0].removeElement();
+					squareArray[1].removeElement();
+					squareArray[2].removeElement();
+					squareArray[3].removeElement();
+					
+					squareArray[0] = new square(xx, yy, type);
+					squareArray[1] = new square(xx, yy - 1, type);
+					squareArray[2] = new square(xx + 1, yy, type);
+					squareArray[3] = new square(xx + 1, yy + 1, type);
+					
+					
+					direction = 2;
+				}
+			}else{	//kun kappale on pystyssä
+				var xx = squareArray[0].x;
+				var yy = squareArray[0].y;
+				//tutkitaan voiko kappaletta pyörittää
+				for(i = 0; i < 2; i++){
+					if(xycoord[xx - i][yy + 1] == 'undefined' || xycoord[xx - i][yy + 1] == 1 ){
+						allow = false;
+					}
+				}
+
+				
+				if(allow){
+					squareArray[0].removeElement();
+					squareArray[1].removeElement();
+					squareArray[2].removeElement();
+					squareArray[3].removeElement();
+					
+					squareArray[0] = new square(xx, yy, type);
+					squareArray[1] = new square(xx + 1, yy, type);
+					squareArray[2] = new square(xx - 1, yy + 1, type);
+					squareArray[3] = new square(xx, yy + 1, type);
+					
+					
+					direction = 1;
+				}
+			}
+		}else if(type == 3){
+			if(direction == 1){	//kun kappale on vaakatasossa
+				
+				var xx = squareArray[1].x;
+				var yy = squareArray[1].y;
+				//tutkitaan voiko kappaletta pyörittää
+				for(i = 0; i < 2; i++){
+					if(xycoord[xx + 1][yy - i] == 'undefined' || xycoord[xx + 1][yy - i] == 1 ){
+						allow = false;
+					}
+				}
+				if(allow){
+				//poistetaan aikaisemmat neliöt ja luodaan uudet uuteen asentoon
+					squareArray[0].removeElement();
+					squareArray[1].removeElement();
+					squareArray[2].removeElement();
+					squareArray[3].removeElement();
+					
+					squareArray[0] = new square(xx + 1, yy - 1, type);
+					squareArray[1] = new square(xx, yy, type);
+					squareArray[2] = new square(xx + 1, yy, type);
+					squareArray[3] = new square(xx , yy + 1, type);
+					
+					
+					direction = 2;
+				}
+			}else{	//kun kappale on pystyssä
+				var xx = squareArray[1].x;
+				var yy = squareArray[1].y;
+				//tutkitaan voiko kappaletta pyörittää
+				if(xx - 1 < 0 || xycoord[xx - 1][yy] == 'undefined' || xycoord[xx - 1][yy] == 1){
+					allow = false;
+				}
+				if(xycoord[xx + 1][yy + 1] == 'undefined' || xycoord[xx + 1][yy + 1] == 1){
+					allow = false;
+				}
+
+				
+				if(allow){
+					squareArray[0].removeElement();
+					squareArray[1].removeElement();
+					squareArray[2].removeElement();
+					squareArray[3].removeElement();
+					
+					squareArray[0] = new square(xx - 1, yy, type);
+					squareArray[1] = new square(xx, yy, type);
+					squareArray[2] = new square(xx, yy + 1, type);
+					squareArray[3] = new square(xx + 1, yy + 1, type);
+					
+					
+					direction = 1;
+				}
+			}
+		}else{
+			
+			if(direction == 1){	//kun kappale on pystyssä
+				
+				var xx = squareArray[2].x;
+				var yy = squareArray[2].y;
+				//tutkitaan voiko kappaletta pyörittää
+				for(i = -2; i < 2; i++){
+					if(xx + i >= 10 || xycoord[xx + i][yy] == undefined || xycoord[xx + i][yy] == 1 ){
+						allow = false;
+					}
+				}
+				if(allow){
+				//poistetaan aikaisemmat neliöt ja luodaan uudet uuteen asentoon
+					squareArray[0].removeElement();
+					squareArray[1].removeElement();
+					squareArray[2].removeElement();
+					squareArray[3].removeElement();
+					
+					squareArray[0] = new square(xx - 2, yy, type);
+					squareArray[1] = new square(xx - 1, yy, type);
+					squareArray[2] = new square(xx, yy, type);
+					squareArray[3] = new square(xx + 1, yy, type);
+					
+					
+					direction = 2;
+				}
+			}else{	//kun kappale on lappeellaan
+				var xx = squareArray[2].x;
+				var yy = squareArray[2].y;
+				for(i = -2; i < 2; i++){
+					if(yy + i >= 20 || xycoord[xx][yy + i] == undefined || xycoord[xx][yy + i] == 1){
+						allow = false;
+					}
+				}
+				if(allow){
+					squareArray[0].removeElement();
+					squareArray[1].removeElement();
+					squareArray[2].removeElement();
+					squareArray[3].removeElement();
+					
+					squareArray[0] = new square(xx, yy - 2, type);
+					squareArray[1] = new square(xx, yy - 1, type);
+					squareArray[2] = new square(xx, yy, type);
+					squareArray[3] = new square(xx, yy + 1, type);
+					
+					
+					direction = 1;
+				}
+			}
+		}
+	}
+	this.land = function(){
+		
+		if(this.landed == false){
+			for(i = 0; i < 4; i++){
+				xycoord[squareArray[i].x][squareArray[i].y] = 1;
+				xysquare[squareArray[i].x][squareArray[i].y] = squareArray[i];
+			}
+			squareArray.length = 0;
+			this.landed = true;
+			clearRows();
+		}
+		
+	}
+	this.moveDown = function(){
+		//jos palikkaa voi liikuttaa alaspäin, liikutetaan, muuten julistetaan laskeutuneeksi
+		
+		var movable = true;
+		
+		if(this.landed == true){
+			movable = false;
+		}else{
+			for(i = 0; i < 4; i++){
+				if(squareArray[i].canMoveDown() == false){
+					movable = false;
+				}
+			}
+		}
+		
+		
+		
+		if(movable){
+			for(i = 0; i < 4; i++){
+				squareArray[i].moveDown();
+			}
+			by++;
+		}else{
+			this.land();
+		}
+	}
+	this.drop = function(){
+		//tiputtaa palikan pohjalle asti
+		
+		var movable = true;
+		
+		if(this.landed == true){
+			movable = false;
+		}else{
+			var drop = 20;
+			for(i = 0; i < 4; i++){
+				if(squareArray[i].canDrop() < drop){
+					drop = squareArray[i].canDrop();
+				}
+			}
+			if(drop > 0){
+				for(i = 0; i < 4; i++){
+					squareArray[i].drop(drop);
+				}
+				this.land();
+			}
+			
+		}
+		
+		
+		
+		
+	}
+	this.moveLeft = function(){
+		//jos palikkaa voi liikuttaa VASEMMALLE, liikutetaan
+		
+		var movable = true;
+		
+		if(this.landed == true){
+			movable = false;
+		}else{
+			for(i = 0; i < 4; i++){
+				if(squareArray[i].canMoveLeft() == false){
+					movable = false;
+				}
+			}
+		}
+		
+		
+		
+		if(movable){
+			for(i = 0; i < 4; i++){
+				squareArray[i].moveLeft();
+			}
+			bx--;
+		}
+	}
+	this.moveRight = function(){
+		//jos palikkaa voi liikuttaa OIKEALLE, liikutetaan
+		
+		var movable = true;
+		
+		if(this.landed == true){
+			movable = false;
+		}else{
+			for(i = 0; i < 4; i++){
+				if(squareArray[i].canMoveRight() == false){
+					movable = false;
+				}
+			}
+		}
+		
+		
+		if(movable){
+			for(i = 0; i < 4; i++){
+				squareArray[i].moveRight();
+			}
+			bx++;
+		}
+	}
+}
+
+
+
+var allowPress = true;
+var pt;
+
+function pressDelay(){
+	if(allowPress == false){
+		
+	}
+}
+function setAllowPressTrue(){
+	allowPress = true;
+}
+
+function pressed(e){
+	
+	if (!e){
+		e = window.event;
+	}
+	if(running){
+		if(e.keyCode == 40){	//down
+			e.preventDefault();
+			if(allowPress){
+				palikka.moveDown();
+				allowPress = false;
+				pt = self.setTimeout("setAllowPressTrue()", 53);
+			}
+		}
+		if(e.keyCode == 37){	//left
+			e.preventDefault();
+			if(allowPress){
+				palikka.moveLeft();
+				allowPress = false;
+				pt = self.setTimeout("setAllowPressTrue()", 10);
+			}
+		}
+		if(e.keyCode == 38){	//rotate
+			e.preventDefault();
+			if(allowPress){
+				palikka.rotate();
+				allowPress = false;
+				pt = self.setTimeout("setAllowPressTrue()", 53);
+			}
+		}
+		if(e.keyCode == 39){	//right
+			e.preventDefault();
+			if(allowPress){
+				palikka.moveRight();
+				allowPress = false;
+				pt = self.setTimeout("setAllowPressTrue()", 10);
+			}
+		}
+		if(e.keyCode == 32){	//drop
+			e.preventDefault();
+			if(allowPress){
+				palikka.drop();
+				allowPress = false;
+				pt = self.setTimeout("setAllowPressTrue()", 53);
+			}
+		}
+	}
+	if(e.keyCode == 80){
+		e.preventDefault();
+		if(allowPress){
+			if(paused){
+				$("#pausebtn").css("background-image", "url('nappi.png')");
+				resumeGame();
+			}else{
+				$("#pausebtn").css("background-image", "url('nappi2.png')");
+				pauseGame();
+			}
+			allowPress = false;
+			pt = self.setTimeout("setAllowPressTrue()", 1000);
+		}
+	}
+}
+
+
+
+
+document.onkeydown = pressed;
+ 
+ $(document).ready(function(){
+
+
+	$("#gameobg").fadeOut(1);
+	startGame();
+	
+	$("#newgbtn").click(function(event){
+		//alert("asdasdasdasd");
+		if(allowPress){
+			//$("#newgbtn").css("background-image", "url('nappi2.png')").delay(200).css("background-image", "url('nappi.png')");;
+			//$("#newgbtn").delay(20).css("background-image", "url('nappi.png')");
+			newGame();
+			allowPress = false;
+			pt = self.setTimeout("setAllowPressTrue()", 2000);
+		}
+	})
+	
+	$("#pausebtn").click(function(event){
+		if(allowPress){
+			if(paused){
+				$("#pausebtn").css("background-image", "url('nappi.png')");
+				resumeGame();
+			}else{
+				$("#pausebtn").css("background-image", "url('nappi2.png')");
+				pauseGame();
+			}
+			allowPress = false;
+			pt = self.setTimeout("setAllowPressTrue()", 1000);
+		}
+	})
+	
+ })
+ 
+ 	
+
+ </script>
+ 
+
+ </head>
+ <body>
+	<div id = "gamebg">
+	<div id = "name"></div>
+	<div id = "screen"><div id = "gameobg"><div id = "gameotext">Game Over</div></div></div>
+	<div id = "newgbtn">New Game</div>
+	<div id = "pausebtn">Pause</div>
+	<span id = "points"></span>
+	<span id = "level">Level 1</span>
+	</div>
+	<div id = "help">
+	<p style = "color: red;">*NOTE*: Doesn't work on Internet Explorer!</p>
+	Move left = Left Arrow<br />
+	Move right = Right Arrow<br />
+	Rotate = Up Arrow<br />
+	Move down = Down Arrow<br />
+	Drop = Space<br />
+	Pause = P<br />
+	<br />
+	Version 0.*random number*<br />
+
+	
+	
+	</div>
+
+ </body>
+ </html>
+
+ 
